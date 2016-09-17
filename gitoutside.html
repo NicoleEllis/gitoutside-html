@@ -6,15 +6,27 @@
 	</head>
 
 	<body>
-		<div id="mapid">mymap</div>
+		<div id="mapid"></div>
 			<script>
-				var mymap = L.map('mapid').setView([43.472264, -80.539783], 13);
+				var mymap = L.map('mapid').locate({setView: true, maxZoom: 16});
 				L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoibmljb2xlZWxsaXMiLCJhIjoiY2l0NnVqZzNrMDN6cjJ0bXczanVlaWJ1biJ9.qsDOsxqHmBcDe4IHZQqxzg', {
 		    		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 		    		maxZoom: 18,
 		    		id: 'your.mapbox.project.id',
 		    		accessToken: 'your.mapbox.public.access.token'
 				}).addTo(mymap);
+				var marker = L.marker([43.472264, -80.539783]).addTo(mymap);
+				marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+				var popup = L.popup();
+
+				function onMapClick(e) {
+				    popup
+				        .setLatLng(e.latlng)
+				        .setContent("You clicked the map at " + e.latlng.toString())
+				        .openOn(mymap);
+				}
+
+				mymap.on('click', onMapClick);
 			</script>
 
 
