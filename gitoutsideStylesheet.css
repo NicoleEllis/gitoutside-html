@@ -3,3 +3,25 @@
 	height: 70%;
 }
 
+header {
+	height: 10%;
+	width: 100%;
+	padding-bottom: 15px;
+	float: right;
+}
+
+img {
+	size: 100%;
+}
+iframe {
+	border: none;
+	width: 85%;
+	height: 80%;
+	position: absolute;
+	left: 7%;
+}
+
+#calendar {
+	position: absolute;
+	top: 100%;
+}
